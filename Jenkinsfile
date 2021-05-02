@@ -16,7 +16,7 @@ stages
 	{
  	 steps {
  	 	withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-    'mvn compile'
+    sh 'mvn compile'
 		}
  	 	}
  	 }
@@ -25,7 +25,7 @@ stages
  	 {
  	 steps {
  	 withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-    'mvn test'
+    sh 'mvn test'
 		}
  	 	}
  	 }
