@@ -4,8 +4,7 @@ pipeline
 agent any
 stages
 {
-	{
-	stage ('scm checkout')
+	{stage ('scm checkout')
 	{
 	steps {
 		git 'https://github.com/ankitasharma-1/maven-project.git'
@@ -18,12 +17,8 @@ stages
  	 	withMaven(jdk: 'local_JDK', maven: 'local_Maven'){
  	 	sh 'mvn compile'
  	 	}
-
-  	}
-}
-
-
-
+		}
+	}
 }
 
 }
