@@ -8,7 +8,7 @@ stages
 	stage ('scm checkout')
 	{
 	steps {
-		git 'https://github.com/ankitasharma-1/maven-project.git'
+		git branch: 'master', url: 'https://github.com/ankitasharma-1/maven-project.git'
 		  }
 	}
 	
@@ -16,7 +16,7 @@ stages
 	{
  	 steps {
  	 	withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-     sh 'compile'
+     sh 'mvn compile'
 		}
  	 	}
  	 }
@@ -25,7 +25,7 @@ stages
  	 {
  	 steps {
  	 withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-     sh 'test'
+     sh 'mvn test'
 		}
  	 	}
  	 }
@@ -34,7 +34,7 @@ stages
  	 {
  	 steps {
  	 withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-     sh 'package'
+     sh 'mvn package'
 	 		}
  	 		}
  	 }
