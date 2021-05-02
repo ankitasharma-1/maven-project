@@ -21,6 +21,14 @@ stages
  	 	}
  	 }
 
+ 	 stage ('testing')
+ 	 {
+ 	 steps {
+ 	 withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
+    'mvn test'
+		}
+ 	 	}
+ 	 }
 }
 
 }
