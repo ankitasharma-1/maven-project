@@ -9,34 +9,35 @@ stages
 	{
 	steps {
 		git 'https://github.com/ankitasharma-1/maven-project.git'
-		     }
-	 }
+		  }
+	}
 	
 	stage ('compile src code')
-	 {
+	{
  	 steps {
  	 	withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-     sh 'mvn compile'
-		       }
- 	 	     }
- 	}
+     sh 'compile'
+		}
+ 	 	}
+ 	 }
 
  	 stage ('testing')
  	 {
  	 steps {
- 	   withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-     sh 'mvn test'
-		        }
- 	 	      }
+ 	 withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
+     sh 'test'
+		}
+ 	 	}
  	 }
 
  	 stage ('build my job')
  	 {
  	 steps {
  	 withMaven(jdk: 'local_JDK', maven: 'local_Maven') {
-     sh 'mvn package'
-	 		     }
- 	 		    }
+     sh 'package'
+	 		}
+ 	 		}
  	 }
 }
+
 }
