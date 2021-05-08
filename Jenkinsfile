@@ -33,6 +33,17 @@ agent any
        			       }
 
 	         }
+		
+		stage ('building')
+		{
+ 			 steps {
+ 	 			withMaven(jdk: 'Local_JDK', maven: 'LocalMvn') 
+ 	 			   	{
+     			sh 'mvn package'
+					}
+       			       }
+
+	         }
 	
 	}
 }
