@@ -19,7 +19,20 @@ agent any
  	 			   	{
      			sh 'mvn compile'
 					}
-        }
+       			       }
 
-		}}
+	         }
+		
+		stage ('testing src code')
+		{
+ 			 steps {
+ 	 			withMaven(jdk: 'Local_JDK', maven: 'LocalMvn') 
+ 	 			   	{
+     			sh 'mvn test'
+					}
+       			       }
+
+	         }
+	
+	}
 }
