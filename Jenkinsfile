@@ -44,6 +44,12 @@ agent any
        			       }
 
 	         }
+		
+		 stage ("tomcat dev deployment")
+     {
+      steps{
+         sshagent(['Tomcat_Key']) {
+          sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.32.209:/var/lib/tomcat/webapps'
 	
 	}
 }
