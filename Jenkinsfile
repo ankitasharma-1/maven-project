@@ -15,7 +15,7 @@ agent any
 		stage ('compile src code')
 		{
  			 steps {
- 	 			withMaven(jdk: 'local_JDK', maven: 'local_Maven')
+ 	 			withMaven(jdk: 'Local_JDK', maven: 'LocalMvn') 
  	 			   	{
      			sh 'mvn compile'
 					}
