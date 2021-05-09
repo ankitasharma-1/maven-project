@@ -3,23 +3,42 @@ pipeline
 agent any
 stages
 	
-	{
-		stage ('scm checkout')
+{
+	stage ('scm checkout')
 		{
-			steps{
-					git branch: 'master', url: 'https://github.com/ankitasharma-1/maven-project.git'
-				    }
-		 }
-     
-     stage ('validating- mavens first goal')
-		 {
-		  	steps{
-					  withMaven(jdk: 'local_JDK', maven: 'local_mvn') 
-						      {
-    						     sh 'mvn validate'
-						      }
-				      }
-	   	}
+		steps{
+				git branch: 'master', url: 'https://github.com/ankitasharma-1/maven-project.git'
+			 }
+		}
+        
+        stage ('validating- mavens first goal')
+		{steps{
+				withMaven(jdk: 'local_JDK', maven: 'local_mvn') 
+					{
+    					sh 'mvn validate'
+					}
+				}
+		}
+
+		stage ('testing- mavens third goal')
+		{steps{
+				withMaven(jdk: 'local_JDK', maven: 'local_mvn') 
+					{
+    					sh 'mvn test'
+					}
+				}
+		}
+        
+        stage ('package - mavens fourth goal')
+		{steps{
+				withMaven(jdk: 'local_JDK', maven: 'local_mvn') 
+					{
+    					sh 'mvn package'
+					}
+				}
+		}
+
+
 
 	}
 }
