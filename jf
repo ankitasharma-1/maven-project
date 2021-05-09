@@ -1,0 +1,30 @@
+pipeline
+{
+agent any
+stages
+	
+{
+	stage ('scm checkout')
+		{
+		steps{
+				git branch: 'master', url: 'https://github.com/ankitasharma-1/maven-project.git'
+			 }
+		}
+        
+        stage ('sonar integration')
+		{
+		steps{
+				withSonarQubeEnv('sonar_ID') 
+				{
+    				withMaven(jdk: 'local_jdk', maven: 'local_mvn') 
+					{
+    					sh 'mvn validate'
+					}
+				}
+				
+				}
+		}
+
+
+	}
+}
