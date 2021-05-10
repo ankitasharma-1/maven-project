@@ -14,7 +14,7 @@ stages
         stage ('sonar integration')
 		{
 		steps{
-				withSonarQubeEnv('Sonar')
+				withSonarQubeEnv('Chalo_SONAR')
 				{
     				withMaven(jdk: 'local_jdk', maven: 'local_mvn') 
 					{
