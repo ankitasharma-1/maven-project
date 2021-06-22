@@ -6,7 +6,7 @@ stages
 {
   stage ('stage 1: scm checkout')
   { steps
-     {git branch: 'main', url: 'https://github.com/ankitasharma-1/jenkins-hi.git'}
+     {git branch: 'master', url: 'https://github.com/ankitasharma-1/maven-project.git'}
   }
    
    stage ('stage 2: compilation')
