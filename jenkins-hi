@@ -1,0 +1,36 @@
+pipeline
+{
+agent any
+stages
+
+{
+  stage ('stage 1: scm checkout')
+  { steps
+     {git branch: 'main', url: 'https://github.com/ankitasharma-1/jenkins-hi.git'}
+  }
+   
+   stage ('stage 2: compilation')
+   {
+     steps
+       {
+         withMaven(jdk: 'jdk', maven: 'mvn') 
+           {
+             sh 'mvn compile'
+           }
+       }
+   }
+
+   stage ('stage 3: testing')
+   {
+     steps
+      {
+      withMaven(jdk: 'jdk', maven: 'mvn') 
+           {
+             sh 'mvn test'
+           }
+      }
+   }
+
+
+}
+}
