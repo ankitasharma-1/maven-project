@@ -6,7 +6,7 @@ stages
 {
   stage ('stage 1: scm checkout')
   { steps
-     {git branch: 'master', url: 'https://github.com/ankitasharma-1/maven-project.git'}
+     {git branch: 'dev', url: 'https://github.com/ankitasharma-1/jenkins-hi.git'}
   }
    
    stage ('stage 2: compilation')
@@ -20,17 +20,27 @@ stages
        }
    }
 
-   stage ('stage 3: testing')
+   stage ('stage 3: packaging')
    {
      steps
       {
       withMaven(jdk: 'jdk', maven: 'mvn') 
            {
-             sh 'mvn test'
+             sh 'mvn package'
            }
       }
    }
+   stage ('stage 4: deploying')
+   {
+     steps
+      {
+      sshagent(['Deploy_on_tomcat'])
+        { 
+           sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@65.2.131.147:/var/lib/tomcat/webapps'  
+        }
 
+      }
+   }
 
 }
 }
